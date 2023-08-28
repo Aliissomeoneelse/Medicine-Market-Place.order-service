@@ -5,9 +5,7 @@ import com.example.orderservice.dto.OrdersDto;
 import com.example.orderservice.module.Orders;
 import org.mapstruct.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-@Component
 @Mapper(componentModel = "spring")
 public abstract class OrdersMapper {
     @Autowired
