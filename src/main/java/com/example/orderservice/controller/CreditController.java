@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Set;
 
 @RestController
-@RequestMapping("credit")
+@RequestMapping(("credit"))
 @RequiredArgsConstructor
 public class CreditController {
     private final CreditService creditService;
@@ -36,7 +36,7 @@ public class CreditController {
     }
 
     @GetMapping(value = "/get-credit-by-user/{id}")
-    public ResponseDto<Set<CreditDto>> getUserByOrdersId(@PathVariable("id") Integer id) {
+    public ResponseDto<Set<CreditDto>> getCreditByUserId(@PathVariable("id") Integer id) {
         return creditService.getCreditByUserId(id);
     }
 }

@@ -9,7 +9,6 @@ spring:
       label: dev/Alisher
   config:
     import: optional:configserver:http://localhost:8888/
-
 eureka:
   client:
     serviceUrl:
