@@ -28,6 +28,11 @@ public class OrdersController {
         return ordersService.getWithUsers(id);
     }
 
+    @GetMapping("/get-with-medical-service/{id}")
+    public ResponseDto<OrdersDto> getWithMedicalServices(@PathVariable("id") Integer id){
+        return ordersService.getWithMedicalServices(id);
+    }
+
     @PutMapping("/update/{id}")
     public ResponseDto<OrdersDto> update(@RequestBody OrdersDto dto, @PathVariable(value = "id") Integer id){
         return ordersService.update(dto,id);

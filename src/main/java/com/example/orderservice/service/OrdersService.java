@@ -68,6 +68,22 @@ public class OrdersService {
                 .build();
     }
 
+    public ResponseDto<OrdersDto> getWithMedicalServices(Integer id) {
+        Optional<Orders> optional = this.ordersRepository.findByIdAndDeletedAtIsNull(id);
+        if (optional.isEmpty()) {
+            return ResponseDto.<OrdersDto>builder()
+                    .message("Order is not found!")
+                    .code(-3)
+                    .data(null)
+                    .build();
+        }
+        return ResponseDto.<OrdersDto>builder()
+                .success(true)
+                .message("OK")
+                .data(ordersMapper.toDtoWithMedicalService(optional.get()))
+                .build();
+    }
+
     public ResponseDto<OrdersDto> update(OrdersDto dto, Integer id) {
         Optional<Orders> optional = ordersRepository.findByIdAndDeletedAtIsNull(id);
         if (optional.isEmpty()) {

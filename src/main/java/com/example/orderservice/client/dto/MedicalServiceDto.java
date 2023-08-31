@@ -1,30 +1,25 @@
-package com.example.orderservice.dto;
+package com.example.orderservice.client.dto;
 
-import com.example.orderservice.client.dto.MedicalServiceDto;
-import com.example.orderservice.client.dto.UserDto;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class OrdersDto {
+public class MedicalServiceDto {
     private Integer id;
-    private String status;
-    private Long orderNumber;
-    //users
-    private Set<UserDto> users;
-
-    //medical service
-    private Set<MedicalServiceDto> medicalServices;
+    @NotBlank(message = "Name cannot be null or empty")
+    private String name;
+    private Double price;
+    private String description;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

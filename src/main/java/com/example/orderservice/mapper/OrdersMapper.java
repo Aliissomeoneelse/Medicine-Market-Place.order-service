@@ -1,5 +1,6 @@
 package com.example.orderservice.mapper;
 
+import com.example.orderservice.client.service.MedicalServiceClient;
 import com.example.orderservice.client.service.UserClient;
 import com.example.orderservice.dto.OrdersDto;
 import com.example.orderservice.module.Orders;
@@ -10,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 public abstract class OrdersMapper {
     @Autowired
     protected UserClient userClient;
+
+    @Autowired
+    protected MedicalServiceClient medicalServiceClient;
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
@@ -22,6 +26,9 @@ public abstract class OrdersMapper {
 
     @Mapping(target = "users", expression = ("java(userClient.getUserByOrdersId(orders.getId()).getData())"))
     public abstract OrdersDto toDtoWithUser(Orders orders);
+
+    @Mapping(target = "medicalServices", expression = ("java(medicalServiceClient.getMedicalServiceByOrdersId(orders.getId()).getData())"))
+    public abstract OrdersDto toDtoWithMedicalService(Orders orders);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
